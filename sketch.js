@@ -11,7 +11,7 @@ function draw() {
     angleMode(DEGREES);
     drawBoxes();
    
-
+    camera(800, -600, 800, 0, 0, 0, 0, 1, 0);
 }
 
 
