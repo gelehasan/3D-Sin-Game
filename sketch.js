@@ -1,4 +1,10 @@
 
+let speed;
+let boxSize;
+let boxWidth;
+let boxHight;
+let modifyDiv;
+
 
 function setup() {
     createCanvas(900, 800, WEBGL);    
@@ -17,14 +23,16 @@ function draw() {
 
     
 function drawBoxes() {
-    
+    speed= select(".speed").value();    
+    boxWidth = select(".boxWidth").value();
+    sizeSlider = select(".sizeSlider").value();
     
         for (let i = -400; i < 400; i=i+ 50) {
           for (let j = -400; j < 400; j= j+ 50) {
             let distance = dist(0, 0, i, j) + (frameCount * 1);
             const minHeight = 100;
             const maxHeight = 300;
-            let length = map(sin(distance), -1, 1, minHeight, maxHeight);
+            let length = map(sin(distance*speed)*sizeSlider, -1, 1, minHeight, maxHeight);
       
             
             push();
@@ -39,3 +47,4 @@ function drawBoxes() {
       }
   
 
+      //draws the confetti to the scene 
