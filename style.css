@@ -1,0 +1,10 @@
+body{
+    display: flex;
+}
+
+.settingDiv{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
