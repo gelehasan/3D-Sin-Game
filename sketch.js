@@ -4,7 +4,7 @@ let boxSize;
 let noseWeight;
 let boxHight;
 let modifyDiv;
-
+let cameraAngle;
 
 function setup() {
     createCanvas(900, 800, WEBGL);    
@@ -17,10 +17,21 @@ function draw() {
     angleMode(DEGREES);
     drawBoxes();
    
-    camera(800, -600, 800, 0, 0, 0, 0, 1, 0);
+    //camera(800, -600, 800, 0, 0, 0, 0, 1, 0);
+   // camera(cos(frameCount*0.3)*800,-600,sin(frameCount*0.3)*800,0,0,0,0,1,0);
+
+   flyingCamera();
 }
 
+function flyingCamera () {
+   
+ let cameraHeight = 800;
 
+    cameraAngle = select(".cameraAngle").value();
+    //camera(800, -600, 800, 0, 0, 0, 0, 1, 0);
+   camera(cos(frameCount*0.8)*cameraHeight,cameraAngle,sin(frameCount*0.8)*cameraHeight,0,0,0,0,1,0);
+
+}
     
 function drawBoxes() {
     speed= select(".speed").value();    
