@@ -1,4 +1,3 @@
-
 let speedSlider;
 let heightSlider;
 let boxSize;
@@ -6,8 +5,16 @@ let noseSlider;
 let boxHight;
 let modifyDiv;
 let cameraAngleSlider;
+let zoomSlider;
+
 let confLocs = [];
 let confTheta=[];
+
+let defaultCamera={
+  X:800,
+  Y:-600,
+  Z:800
+}
 
 function setup() {
     createCanvas(900, 800, WEBGL);    
@@ -37,7 +44,12 @@ function setup() {
     createSpan("Camera Angle:").parent(settingDiv);
     cameraAngleSlider = createSlider(-600, 600, -600);
     cameraAngleSlider.parent(settingDiv);
- 
+    
+    createSpan("Zoom:").parent(settingDiv);
+    zoomSlider = createSlider(100, 1000, 800); 
+    zoomSlider.parent(settingDiv)
+
+    
 
 }
 
@@ -72,12 +84,22 @@ function draw() {
 
 function flyingCamera () {
    
- let cameraHeight = 800;
+ let zoomValue = zoomSlider.value(); 
+ let  userCameraAngle = cameraAngleSlider.value();
+ let cameraAngle = (frameCount * 0.8) + userCameraAngle;
 
-   let  cameraAngle = cameraAngleSlider.value();
+ let cameraX = cos(cameraAngle) * 800;
+  let cameraY = -600;
+  let cameraZ = sin(cameraAngle) * 800;
 
-   camera(cos(frameCount*0.8)*cameraHeight,cameraAngle,sin(frameCount*0.8)*cameraHeight,0,0,0,0,1,0);
+ if (zoomValue !== defaultCamera.Z) {
+    let zoomFactor = map(zoomValue, 100, 1000, 0.2, 5);
+    cameraX *= zoomFactor;
+    cameraY *= zoomFactor;
+    cameraZ *= zoomFactor;
+  }
 
+  camera(cameraX, cameraY, cameraZ, 0, 0, 0, 0, 1, 0);
 }
     
 function drawBoxes() {
