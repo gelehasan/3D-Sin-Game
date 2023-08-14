@@ -1,10 +1,11 @@
 
-let speed;
+let speedSlider;
+let heightSlider;
 let boxSize;
-let noseWeight;
+let noseSlider;
 let boxHight;
 let modifyDiv;
-let cameraAngle;
+let cameraAngleSlider;
 let confLocs = [];
 let confTheta=[];
 
@@ -17,7 +18,25 @@ function setup() {
         confTheta.push(random(0, 360));
     }
     pointLight(255, 255, 255, 0, -200, 200);
-  
+    
+    const settingDiv = select(".settingDiv");
+
+    createSpan("Speed:").parent(settingDiv);
+    speedSlider = createSlider(1, 100, 5);
+    speedSlider.parent(settingDiv);
+
+    createSpan("Height:").parent(settingDiv);
+    heightSlider = createSlider(0, 10, 1, 0.5);
+    heightSlider.parent(settingDiv);
+
+
+    createSpan("Nose:").parent(settingDiv);
+    noseSlider = createSlider(0, 50, 0);
+    noseSlider.parent(settingDiv);
+
+    createSpan("Camera Angle:").parent(settingDiv);
+    cameraAngleSlider = createSlider(-600, 600, -600);
+    cameraAngleSlider.parent(settingDiv);
  
 
 }
@@ -55,16 +74,17 @@ function flyingCamera () {
    
  let cameraHeight = 800;
 
-    cameraAngle = select(".cameraAngle").value();
+   let  cameraAngle = cameraAngleSlider.value();
 
    camera(cos(frameCount*0.8)*cameraHeight,cameraAngle,sin(frameCount*0.8)*cameraHeight,0,0,0,0,1,0);
 
 }
     
 function drawBoxes() {
-    speed= select(".speed").value();    
-    noseWeight = select(".nose").value();
-    sizeSlider = select(".sizeSlider").value();
+
+   let speed= speedSlider.value();    
+    let noseWeight = noseSlider.value();
+    let sizeSlider = heightSlider.value();
         for (let i = -400; i < 400; i=i+ 50) {
           for (let j = -400; j < 400; j= j+ 50) {
             const minHeight = 100;
