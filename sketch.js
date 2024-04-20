@@ -1,4 +1,3 @@
-// My code starts here
 
 // Variables for sliders and settings
 let speedSlider;
@@ -21,7 +20,6 @@ let defaultCamera = {
   Z: 800
 };
 
-//my code starts here
 function setup() {
   // Create a canvas and initialize settings
   createCanvas(900, 800, WEBGL);
@@ -61,9 +59,9 @@ function setup() {
   zoomSlider.parent(settingDiv);
 }
 
-// Ends here
 
-// My code starts here
+
+
 function draw() {
   background(125);
 
@@ -86,7 +84,6 @@ function draw() {
   flyingCamera();
 }
 
-// Ends here
 
 // My code starts here
 function flyingCamera() {
@@ -112,9 +109,8 @@ function flyingCamera() {
   camera(cameraX, cameraY, cameraZ, 0, 0, 0, 0, 1, 0);
 }
 
-// Ends here
 
-// My code starts here
+
 function drawBoxes() {
   let speed = speedSlider.value();
   let noseWeight = noseSlider.value();
@@ -141,9 +137,6 @@ function drawBoxes() {
   }
 }
 
-// Ends here
-
-// My code starts here
 function confetti() {
   // Draw confetti pieces and animate them
   for (var i = 0; i < confLocs.length; i++) {
@@ -164,4 +157,4 @@ function confetti() {
   }
 }
 
-// Ends here
+
